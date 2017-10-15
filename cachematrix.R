@@ -33,7 +33,11 @@ cacheSolve <- function(x, ...) {
             return(i)
         }
         data <- x$get()
-        i <- solve(data)       # computes the inverse of a square matrix
-        x$setinv(i)
-        i
+        if (nrow(data) == ncol(data)) {
+            i <- solve(data)       # computes the inverse of a square matrix
+            x$setinv(i)
+            i
+        }
+        else
+            message("Not a Square Matrix")
 }
